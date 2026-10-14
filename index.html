@@ -8,6 +8,9 @@
 <meta property="og:description" content="Довожу цифровые продукты от идеи до релиза — в срок, в бюджет и без хаоса в команде.">
 <meta property="og:image" content="https://missberni.eu/portrait.png">
 <meta property="og:url" content="https://missberni.eu/">
+<link rel="alternate" hreflang="ru" href="https://missberni.eu/">
+<link rel="alternate" hreflang="en" href="https://missberni.eu/en/">
+<link rel="alternate" hreflang="x-default" href="https://missberni.eu/">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='32' fill='%236E4130'/%3E%3Ctext x='32' y='41' font-family='Arial' font-weight='700' font-size='24' fill='%23FBF1EC' text-anchor='middle'%3EАБ%3C/text%3E%3C/svg%3E">
 <style>img{max-width:100%}[hidden]{display:none!important}:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}</style>
 <title>Анастасия Бернатович</title>
@@ -60,6 +63,11 @@ a { color: inherit; }
   position: sticky; top: env(safe-area-inset-top, 0px); z-index: 20;
   padding-block: 14px;
 }
+.nav-end { display: flex; align-items: center; gap: 12px; }
+.lsw { display: inline-flex; padding: 3px; gap: 2px; border: 1px solid var(--line); border-radius: 999px; }
+.lsw a { font: 700 12px/1 var(--f-body); letter-spacing: .08em; padding: 10px 11px; border-radius: 999px; text-decoration: none; color: var(--muted); }
+.lsw a:hover { color: var(--brown); }
+.lsw a[aria-current] { background: var(--brown); color: var(--on-brown); }
 .nav-inner {
   display: flex; align-items: center; gap: 18px; justify-content: space-between;
   background: color-mix(in srgb, var(--bg) 72%, transparent);
@@ -241,6 +249,7 @@ footer { padding-block: 34px 44px; display: flex; flex-wrap: wrap; justify-conte
   .nav .status { display: none; }
 }
 @media (max-width: 560px) {
+  .btn-long { display: none; }
   .bento .tile { grid-column: span 6; }
   .steps { grid-template-columns: 1fr; }
   .step, .step + .step { padding: 22px 0 18px; border-right: 0; border-bottom: 1px solid var(--line); }
@@ -259,8 +268,11 @@ footer { padding-block: 34px 44px; display: flex; flex-wrap: wrap; justify-conte
       <nav class="links" aria-label="Разделы">
         <a href="#about">Обо мне</a><a href="#services">Услуги</a><a href="#process">Как работаю</a><a href="#experience">Опыт</a>
       </nav>
-      <span class="status">Беру новые проекты</span>
-      <a class="btn" href="https://t.me/Bernatovic_Anastasiia" target="_blank" rel="noopener">Написать в Telegram</a>
+      <div class="nav-end">
+        <span class="status">Беру новые проекты</span>
+        <div class="lsw" aria-label="Язык сайта"><a href="/" lang="ru" hreflang="ru" aria-current="page">RU</a><a href="/en/" lang="en" hreflang="en">EN</a></div>
+        <a class="btn" href="https://t.me/Bernatovic_Anastasiia" target="_blank" rel="noopener"><span class="btn-long">Написать в </span>Telegram</a>
+      </div>
     </div>
   </div>
 </header>
