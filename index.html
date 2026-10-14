@@ -68,6 +68,7 @@ a { color: inherit; }
 .lsw a { font: 700 12px/1 var(--f-body); letter-spacing: .08em; padding: 10px 11px; border-radius: 999px; text-decoration: none; color: var(--muted); }
 .lsw a:hover { color: var(--brown); }
 .lsw a[aria-current] { background: var(--brown); color: var(--on-brown); }
+@media (max-width: 400px) { .nav-inner { gap: 8px; padding: 6px 6px 6px 8px; } .nav-end { gap: 6px; } .mono { width: 40px; height: 40px; font-size: 12px; } .lsw a { padding: 9px 8px; } .nav .btn { padding: 12px 14px; } }
 .nav-inner {
   display: flex; align-items: center; gap: 18px; justify-content: space-between;
   background: color-mix(in srgb, var(--bg) 72%, transparent);
@@ -201,6 +202,11 @@ h2 em { font-style: normal; font-weight: 200; }
 .c-row .k { width: 100%; font-size: 12px; letter-spacing: .14em; text-transform: uppercase; opacity: .7; }
 .c-row .v { flex: 1 0 100%; min-width: 0; font: 600 clamp(15px, 4.4vw, 19px)/1.3 var(--f-body); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; user-select: all; }
 .c-row button { border: 1px solid color-mix(in srgb, var(--on-brown) 45%, transparent); background: transparent; color: var(--on-brown); border-radius: 999px; padding: 9px 14px; font: 600 13px/1 var(--f-body); cursor: pointer; }
+.pf-teaser { display: grid; grid-template-columns: 1fr auto; gap: 28px; align-items: center; background: var(--card); border: 1px solid var(--line); border-radius: 36px; padding: clamp(26px, 4vw, 44px); }
+.pf-logos { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 22px; }
+.pf-logos img { height: 44px; width: auto; border-radius: 12px; background: #fff; padding: 6px 10px; border: 1px solid var(--line); }
+.pf-logos img.flush { padding: 0; }
+@media (max-width: 760px) { .pf-teaser { grid-template-columns: 1fr; } }
 .c-go { background: var(--on-brown); color: var(--brown); text-decoration: none; border-radius: 999px; padding: 10px 15px; font: 700 13px/1 var(--f-body); }
 .c-go:hover { filter: brightness(.95); }
 .c-row button:hover { background: color-mix(in srgb, var(--on-brown) 14%, transparent); }
@@ -266,7 +272,7 @@ footer { padding-block: 34px 44px; display: flex; flex-wrap: wrap; justify-conte
     <div class="nav-inner">
       <a class="mono" href="#top" aria-label="В начало">АБ</a>
       <nav class="links" aria-label="Разделы">
-        <a href="#about">Обо мне</a><a href="#services">Услуги</a><a href="#process">Как работаю</a><a href="#experience">Опыт</a>
+        <a href="#about">Обо мне</a><a href="#services">Услуги</a><a href="#process">Как работаю</a><a href="/portfolio/">Портфолио</a><a href="#experience">Опыт</a>
       </nav>
       <div class="nav-end">
         <span class="status">Беру новые проекты</span>
@@ -420,6 +426,14 @@ footer { padding-block: 34px 44px; display: flex; flex-wrap: wrap; justify-conte
     </div>
   </section>
 
+  <section id="portfolio" style="padding-top:0">
+    <div class="wrap">
+      <div class="pf-teaser reveal">
+        <div><h2>Портфолио</h2><p class="sec-note" style="margin-top:14px">9 сайтов и интернет-магазинов на Tilda, Shopify и Squarespace: салоны красоты, магазины, ресторан, эксперты из Германии и США.</p><div class="pf-logos"><img class="flush" src="/work/logo-rusart.png" alt="RUSART"><img src="/work/logo-tilton.png" alt="Dr. Natalia Tilton"><img src="/work/logo-somoroff.png" alt="Somoroff People"><img src="/work/logo-brightmnds.png" alt="Brightmnds"><img class="flush" src="/work/logo-miani.png" alt="MIANI furniture"><img class="flush" src="/work/logo-prolaw.png" alt="PRO Право"></div></div>
+        <a class="btn" href="/portfolio/">Смотреть проекты <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M4 12 12 4M5.5 4H12v6.5" stroke="currentColor" stroke-width="1.6"/></svg></a>
+      </div>
+    </div>
+  </section>
   <section id="contact" style="padding-top:0">
     <div class="wrap">
       <div class="contact">
