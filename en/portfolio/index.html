@@ -204,7 +204,7 @@ h2 em { font-style: normal; font-weight: 200; }
 .c-row button { border: 1px solid color-mix(in srgb, var(--on-brown) 45%, transparent); background: transparent; color: var(--on-brown); border-radius: 999px; padding: 9px 14px; font: 600 13px/1 var(--f-body); cursor: pointer; }
 .pf-teaser { display: grid; grid-template-columns: 1fr auto; gap: 28px; align-items: center; background: var(--card); border: 1px solid var(--line); border-radius: 36px; padding: clamp(26px, 4vw, 44px); }
 .pf-logos { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 22px; }
-.pf-logos img { height: 44px; width: auto; border-radius: 12px; background: #fff; padding: 6px 10px; border: 1px solid var(--line); }
+.pf-logos img { height: 56px; width: auto; max-width: 180px; object-fit: contain; border-radius: 14px; background: #fff; padding: 8px 14px; border: 1px solid var(--line); }
 .pf-logos img.flush { padding: 0; }
 @media (max-width: 760px) { .pf-teaser { grid-template-columns: 1fr; } }
 .c-go { background: var(--on-brown); color: var(--brown); text-decoration: none; border-radius: 999px; padding: 10px 15px; font: 700 13px/1 var(--f-body); }
@@ -324,12 +324,12 @@ footer { padding-block: 34px 44px; display: flex; flex-wrap: wrap; justify-conte
       <p class="hero-lead" style="max-width:52ch">Websites and online stores I launched with no-code builders: from a beauty salon in Moscow to a furniture store in the US.</p>
       <div class="facts"><div class="fact"><b>9</b><span>projects</span></div><div class="fact"><b>3</b><span>languages: RU, DE, EN</span></div><div class="fact"><b>3</b><span>platforms: Tilda, Shopify, Squarespace</span></div></div>
     </div>
-    <div class="filters" role="group" aria-label="Filter projects"><button type="button" data-f="all" aria-pressed="true">All</button><button type="button" data-f="beauty" aria-pressed="false">Beauty</button><button type="button" data-f="fashion" aria-pressed="false">Online stores</button><button type="button" data-f="food" aria-pressed="false">Restaurants</button><button type="button" data-f="experts" aria-pressed="false">Experts & services</button><span class="note">Videos play at 2× speed</span></div>
+    <div class="filters" role="group" aria-label="Filter projects"><button type="button" data-f="all" aria-pressed="true">All</button><button type="button" data-f="beauty" aria-pressed="false">Beauty</button><button type="button" data-f="fashion" aria-pressed="false">Online stores</button><button type="button" data-f="food" aria-pressed="false">Restaurants</button><button type="button" data-f="experts" aria-pressed="false">Experts & services</button><span class="note"></span></div>
     <div class="grid">
         <article class="proj reveal" data-cat="beauty">
           <div class="stage" style="--brand:#8E7466">
-            <div class="logo-chip" style="--chip:#FFFFFF"><img src="/work/logo-dar.png" alt="Dar.BeautyBar" loading="lazy"></div>
-            <div class="phone"><video src="/work/dar.mp4" poster="/work/dar.jpg" muted loop playsinline preload="none" aria-label="Dar.BeautyBar"></video></div>
+            <div class="logo-chip" style="--chip:#FFFFFF"><img src="/work/logo-dar.png?v=3" alt="Dar.BeautyBar" loading="lazy"></div>
+            <div class="phone"><video src="/work/dar.mp4?v=3" poster="/work/dar.jpg?v=3" muted loop playsinline preload="none" aria-label="Dar.BeautyBar"></video></div>
           </div>
           <div class="proj-body">
             <span class="proj-type">Beauty salon</span>
@@ -339,8 +339,8 @@ footer { padding-block: 34px 44px; display: flex; flex-wrap: wrap; justify-conte
           </div>
         </article><article class="proj reveal" data-cat="beauty">
           <div class="stage" style="--brand:#E9DFD6">
-            <div class="logo-chip" style="--chip:#FFFFFF"><img src="/work/logo-kopernik.png" alt="Kopernik SPA clinic" loading="lazy"></div>
-            <div class="phone"><video src="/work/kopernik.mp4" poster="/work/kopernik.jpg" muted loop playsinline preload="none" aria-label="Kopernik SPA clinic"></video></div>
+            <div class="logo-chip word" style="--chip:#FFFFFF">Kopernik SPA clinic</div>
+            <div class="phone"><video src="/work/kopernik.mp4?v=3" poster="/work/kopernik.jpg?v=3" muted loop playsinline preload="none" aria-label="Kopernik SPA clinic"></video></div>
           </div>
           <div class="proj-body">
             <span class="proj-type">Cosmetology clinic</span>
@@ -350,8 +350,8 @@ footer { padding-block: 34px 44px; display: flex; flex-wrap: wrap; justify-conte
           </div>
         </article><article class="proj reveal" data-cat="fashion">
           <div class="stage" style="--brand:#8B2232">
-            <div class="logo-chip flush" style="--chip:#8B2232"><img src="/work/logo-rusart.png" alt="RUSART fashion" loading="lazy"></div>
-            <div class="phone"><video src="/work/rusart.mp4" poster="/work/rusart.jpg" muted loop playsinline preload="none" aria-label="RUSART fashion"></video></div>
+            <div class="logo-chip" style="--chip:#FFFFFF"><img src="/work/logo-rusart.png?v=4" alt="RUSART fashion" loading="lazy"></div>
+            <div class="phone"><video src="/work/rusart.mp4?v=3" poster="/work/rusart.jpg?v=3" muted loop playsinline preload="none" aria-label="RUSART fashion"></video></div>
           </div>
           <div class="proj-body">
             <span class="proj-type">Clothing brand</span>
@@ -361,8 +361,8 @@ footer { padding-block: 34px 44px; display: flex; flex-wrap: wrap; justify-conte
           </div>
         </article><article class="proj reveal" data-cat="fashion">
           <div class="stage" style="--brand:#1F4FA8">
-            <div class="logo-chip" style="--chip:#FFFFFF"><img src="/work/logo-brightmnds.png" alt="Brightmnds" loading="lazy"></div>
-            <div class="phone"><video src="/work/brightmnds.mp4" poster="/work/brightmnds.jpg" muted loop playsinline preload="none" aria-label="Brightmnds"></video></div>
+            <div class="logo-chip" style="--chip:#FFFFFF"><img src="/work/logo-brightmnds.png?v=3" alt="Brightmnds" loading="lazy"></div>
+            <div class="phone"><video src="/work/brightmnds.mp4?v=3" poster="/work/brightmnds.jpg?v=3" muted loop playsinline preload="none" aria-label="Brightmnds"></video></div>
           </div>
           <div class="proj-body">
             <span class="proj-type">DIY kits and app</span>
@@ -372,8 +372,8 @@ footer { padding-block: 34px 44px; display: flex; flex-wrap: wrap; justify-conte
           </div>
         </article><article class="proj reveal" data-cat="fashion">
           <div class="stage" style="--brand:#D9CFC0">
-            <div class="logo-chip" style="--chip:#FFFFFF"><img src="/work/logo-miani.png" alt="MIANI furniture" loading="lazy"></div>
-            <div class="phone"><video src="/work/miani.mp4" poster="/work/miani.jpg" muted loop playsinline preload="none" aria-label="MIANI furniture"></video></div>
+            <div class="logo-chip" style="--chip:#FFFFFF"><img src="/work/logo-miani.png?v=3" alt="MIANI furniture" loading="lazy"></div>
+            <div class="phone"><video src="/work/miani.mp4?v=3" poster="/work/miani.jpg?v=3" muted loop playsinline preload="none" aria-label="MIANI furniture"></video></div>
           </div>
           <div class="proj-body">
             <span class="proj-type">Furniture store</span>
@@ -383,8 +383,8 @@ footer { padding-block: 34px 44px; display: flex; flex-wrap: wrap; justify-conte
           </div>
         </article><article class="proj reveal" data-cat="food">
           <div class="stage" style="--brand:#1B1716">
-            <div class="logo-chip flush" style="--chip:#151213"><img src="/work/logo-mtskheta.png" alt="Mtskheta" loading="lazy"></div>
-            <div class="phone"><video src="/work/mtskheta.mp4" poster="/work/mtskheta.jpg" muted loop playsinline preload="none" aria-label="Mtskheta"></video></div>
+            <div class="logo-chip flush" style="--chip:#151213"><img src="/work/logo-mtskheta.png?v=3" alt="Mtskheta" loading="lazy"></div>
+            <div class="phone"><video src="/work/mtskheta.mp4?v=3" poster="/work/mtskheta.jpg?v=3" muted loop playsinline preload="none" aria-label="Mtskheta"></video></div>
           </div>
           <div class="proj-body">
             <span class="proj-type">Restaurant</span>
@@ -394,8 +394,8 @@ footer { padding-block: 34px 44px; display: flex; flex-wrap: wrap; justify-conte
           </div>
         </article><article class="proj reveal" data-cat="experts">
           <div class="stage" style="--brand:#111111">
-            <div class="logo-chip" style="--chip:#FFFFFF"><img src="/work/logo-prolaw.png" alt="PRO Pravo" loading="lazy"></div>
-            <div class="phone"><video src="/work/prolaw.mp4" poster="/work/prolaw.jpg" muted loop playsinline preload="none" aria-label="PRO Pravo"></video></div>
+            <div class="logo-chip" style="--chip:#FFFFFF"><img src="/work/logo-prolaw.png?v=3" alt="PRO Pravo" loading="lazy"></div>
+            <div class="phone"><video src="/work/prolaw.mp4?v=3" poster="/work/prolaw.jpg?v=3" muted loop playsinline preload="none" aria-label="PRO Pravo"></video></div>
           </div>
           <div class="proj-body">
             <span class="proj-type">Legal services</span>
@@ -405,8 +405,8 @@ footer { padding-block: 34px 44px; display: flex; flex-wrap: wrap; justify-conte
           </div>
         </article><article class="proj reveal" data-cat="experts">
           <div class="stage" style="--brand:#5FD3C6">
-            <div class="logo-chip" style="--chip:#FFFFFF"><img src="/work/logo-tilton.png" alt="Dr. Natalia Tilton" loading="lazy"></div>
-            <div class="phone"><video src="/work/tilton.mp4" poster="/work/tilton.jpg" muted loop playsinline preload="none" aria-label="Dr. Natalia Tilton"></video></div>
+            <div class="logo-chip" style="--chip:#FFFFFF"><img src="/work/logo-tilton.png?v=3" alt="Dr. Natalia Tilton" loading="lazy"></div>
+            <div class="phone"><video src="/work/tilton.mp4?v=3" poster="/work/tilton.jpg?v=3" muted loop playsinline preload="none" aria-label="Dr. Natalia Tilton"></video></div>
           </div>
           <div class="proj-body">
             <span class="proj-type">Language expert, Germany</span>
@@ -416,8 +416,8 @@ footer { padding-block: 34px 44px; display: flex; flex-wrap: wrap; justify-conte
           </div>
         </article><article class="proj reveal" data-cat="experts">
           <div class="stage" style="--brand:#161414">
-            <div class="logo-chip" style="--chip:#FFFFFF"><img src="/work/logo-somoroff.png" alt="Somoroff People" loading="lazy"></div>
-            <div class="phone"><video src="/work/somoroff.mp4" poster="/work/somoroff.jpg" muted loop playsinline preload="none" aria-label="Somoroff People"></video></div>
+            <div class="logo-chip" style="--chip:#FFFFFF"><img src="/work/logo-somoroff.png?v=3" alt="Somoroff People" loading="lazy"></div>
+            <div class="phone"><video src="/work/somoroff.mp4?v=3" poster="/work/somoroff.jpg?v=3" muted loop playsinline preload="none" aria-label="Somoroff People"></video></div>
           </div>
           <div class="proj-body">
             <span class="proj-type">Photographer Michael Somoroff</span>
