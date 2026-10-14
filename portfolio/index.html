@@ -202,6 +202,11 @@ h2 em { font-style: normal; font-weight: 200; }
 .c-row .k { width: 100%; font-size: 12px; letter-spacing: .14em; text-transform: uppercase; opacity: .7; }
 .c-row .v { flex: 1 0 100%; min-width: 0; font: 600 clamp(15px, 4.4vw, 19px)/1.3 var(--f-body); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; user-select: all; }
 .c-row button { border: 1px solid color-mix(in srgb, var(--on-brown) 45%, transparent); background: transparent; color: var(--on-brown); border-radius: 999px; padding: 9px 14px; font: 600 13px/1 var(--f-body); cursor: pointer; }
+.pf-teaser { display: grid; grid-template-columns: 1fr auto; gap: 28px; align-items: center; background: var(--card); border: 1px solid var(--line); border-radius: 36px; padding: clamp(26px, 4vw, 44px); }
+.pf-logos { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 22px; }
+.pf-logos img { height: 44px; width: auto; border-radius: 12px; background: #fff; padding: 6px 10px; border: 1px solid var(--line); }
+.pf-logos img.flush { padding: 0; }
+@media (max-width: 760px) { .pf-teaser { grid-template-columns: 1fr; } }
 .c-go { background: var(--on-brown); color: var(--brown); text-decoration: none; border-radius: 999px; padding: 10px 15px; font: 700 13px/1 var(--f-body); }
 .c-go:hover { filter: brightness(.95); }
 .c-row button:hover { background: color-mix(in srgb, var(--on-brown) 14%, transparent); }
@@ -323,7 +328,7 @@ footer { padding-block: 34px 44px; display: flex; flex-wrap: wrap; justify-conte
     <div class="grid">
         <article class="proj reveal" data-cat="beauty">
           <div class="stage" style="--brand:#8E7466">
-            <div class="logo-chip flush" style="--chip:#9A7B6C"><img src="/work/logo-dar.png" alt="Dar.BeautyBar" loading="lazy"></div>
+            <div class="logo-chip" style="--chip:#FFFFFF"><img src="/work/logo-dar.png" alt="Dar.BeautyBar" loading="lazy"></div>
             <div class="phone"><video src="/work/dar.mp4" poster="/work/dar.jpg" muted loop playsinline preload="none" aria-label="Dar.BeautyBar"></video></div>
           </div>
           <div class="proj-body">
@@ -334,7 +339,7 @@ footer { padding-block: 34px 44px; display: flex; flex-wrap: wrap; justify-conte
           </div>
         </article><article class="proj reveal" data-cat="beauty">
           <div class="stage" style="--brand:#E9DFD6">
-            <div class="logo-chip word" style="--chip:#FFFFFF">SPA клиника Коперник</div>
+            <div class="logo-chip" style="--chip:#FFFFFF"><img src="/work/logo-kopernik.png" alt="SPA клиника «Коперник»" loading="lazy"></div>
             <div class="phone"><video src="/work/kopernik.mp4" poster="/work/kopernik.jpg" muted loop playsinline preload="none" aria-label="SPA клиника «Коперник»"></video></div>
           </div>
           <div class="proj-body">
@@ -367,7 +372,7 @@ footer { padding-block: 34px 44px; display: flex; flex-wrap: wrap; justify-conte
           </div>
         </article><article class="proj reveal" data-cat="fashion">
           <div class="stage" style="--brand:#D9CFC0">
-            <div class="logo-chip flush" style="--chip:#F4EFE6"><img src="/work/logo-miani.png" alt="MIANI furniture" loading="lazy"></div>
+            <div class="logo-chip" style="--chip:#FFFFFF"><img src="/work/logo-miani.png" alt="MIANI furniture" loading="lazy"></div>
             <div class="phone"><video src="/work/miani.mp4" poster="/work/miani.jpg" muted loop playsinline preload="none" aria-label="MIANI furniture"></video></div>
           </div>
           <div class="proj-body">
@@ -389,7 +394,7 @@ footer { padding-block: 34px 44px; display: flex; flex-wrap: wrap; justify-conte
           </div>
         </article><article class="proj reveal" data-cat="experts">
           <div class="stage" style="--brand:#111111">
-            <div class="logo-chip flush" style="--chip:#000000"><img src="/work/logo-prolaw.png" alt="PRO Право" loading="lazy"></div>
+            <div class="logo-chip" style="--chip:#FFFFFF"><img src="/work/logo-prolaw.png" alt="PRO Право" loading="lazy"></div>
             <div class="phone"><video src="/work/prolaw.mp4" poster="/work/prolaw.jpg" muted loop playsinline preload="none" aria-label="PRO Право"></video></div>
           </div>
           <div class="proj-body">
