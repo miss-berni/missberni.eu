@@ -23,7 +23,7 @@
   color-scheme: light;
   --mint: #C6E7E3; --peach: #F9D3C5; --blush: #FAEDE8; --rose: #EBCBD0;
   --ink: #5A5C66; --ink-d: #3E4049; --pearl: #FFFFFF; --dot: #EE9C83;
-  --mint-d: #8FCFC7; --rose-d: #D9A3AD; --link: #3F8F88; --line: #EEE4E1; --muted: #7C7E88;
+  --mint-d: #8FCFC7; --rose-d: #D9A3AD; --link: #3F8F88; --line: #EEE4E1; --muted: #686A74;
   --mesh: radial-gradient(60% 70% at 15% 20%, var(--mint) 0, transparent 70%), radial-gradient(55% 65% at 85% 25%, var(--peach) 0, transparent 70%), radial-gradient(60% 70% at 60% 95%, var(--rose) 0, transparent 70%), var(--blush);
   --f-display: "Unbounded", "Arial Black", system-ui, sans-serif;
   --f-body: "Manrope", "Segoe UI", system-ui, sans-serif;
@@ -272,6 +272,62 @@ footer .wm { font-size: 22px; }
 @media (max-width: 1000px) { .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 @media (max-width: 620px) { .grid { grid-template-columns: 1fr; } .stage { height: 400px; } }
 @media (prefers-reduced-motion: reduce) { .phone { transition: none; } }
+
+/* ===== v3 refinements ===== */
+/* 1. Nav: solid glass strip once the page scrolls, so content never peeks above it */
+.nav { transition: background .25s, box-shadow .25s; }
+.nav.scrolled { background: color-mix(in srgb, var(--pearl) 82%, transparent); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); box-shadow: 0 1px 0 var(--line); }
+.nav.scrolled .nav-in { box-shadow: inset 0 0 0 1px var(--line); background: var(--pearl); }
+/* 2. Readability: bigger supporting text, darker greys */
+.hero .tag { font-size: 14px; padding: 10px 15px; }
+.lead { font-size: clamp(19px, 2vw, 23px); color: var(--ink-d); max-width: 40ch; }
+.hero .btn { font-size: 16px; padding: 10px 10px 10px 24px; }
+.hero .btn .go { width: 42px; height: 42px; }
+.about p { color: var(--ink-d); }
+.stat span { font-size: 16px; color: var(--ink-d); }
+.stat:nth-child(4) span { color: #E6E7EC; }
+.sec-note { font-size: 17px; color: var(--ink); }
+/* 3. Services, group 01: wider small cards (big card + 2×2), no squeezed 3-line titles */
+.g-grid { grid-template-columns: 1.25fr 1fr 1fr; }
+.svc.big { grid-column: auto; grid-row: span 2; }
+.svc h4 { font-size: 20px; }
+.svc p { font-size: 16px; color: var(--ink); }
+.path { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; margin-top: 6px; font: 500 13px/1 var(--f-mono); color: var(--ink-d); }
+.path span { background: var(--blush); padding: 8px 11px; border-radius: 999px; }
+.path span:last-child { background: var(--mint); }
+.path i { width: 14px; height: 1.5px; background: var(--rose-d); }
+/* 4. Services, group 02: AI card runs full width (text + code side by side), no empty gaps */
+.g-web { grid-template-columns: 1fr 1fr; }
+.svc.ai { grid-column: 1 / -1; grid-row: auto; display: grid; grid-template-columns: auto 1fr 1.1fr; align-items: center; gap: 18px 24px; padding: 26px; }
+.svc.ai .ai-txt { display: grid; gap: 8px; min-width: 0; }
+.svc.ai .code { font-size: 13.5px; }
+/* 5. Process: numbered steps joined by a line */
+.steps { counter-reset: st; }
+.steps::before { content: ""; position: absolute; left: 24px; right: 24px; top: 41px; height: 2px; background: repeating-linear-gradient(90deg, var(--rose) 0 8px, transparent 8px 14px); z-index: 0; }
+.step { z-index: 1; }
+.step .n { background: var(--pearl); box-shadow: inset 0 0 0 1.5px var(--rose); }
+.step p { color: var(--ink); font-size: 16px; }
+/* 6. Portfolio logos: even tiles in a grid instead of a ragged row */
+.clients { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 10px; }
+.clients img { width: 100%; max-width: none; height: 74px; padding: 12px 16px; box-sizing: border-box; }
+/* 7. Experience: first four visible, the rest behind a toggle */
+.jobs .more { display: grid; gap: 10px; }
+.toggle { justify-self: center; margin-top: 6px; }
+.job time { font-size: 14px; }
+.job p { color: var(--ink); }
+/* 8. Contact: Telegram is the main channel */
+.c-row:first-child { background: var(--mint); }
+.c-row:first-child .k { color: var(--ink-d); }
+@media (max-width: 980px) {
+  .g-grid { grid-template-columns: 1fr 1fr; }
+  .svc.big { grid-column: 1 / -1; grid-row: auto; }
+  .svc.ai { grid-template-columns: 1fr; }
+  .steps::before { display: none; }
+}
+@media (max-width: 560px) {
+  .g-grid, .g-web { grid-template-columns: 1fr; }
+  .svc.big, .svc.ai { grid-column: auto; }
+}
 </style>
 </head>
 <body>
@@ -426,6 +482,7 @@ footer .wm { font-size: 22px; }
   <div class="row"><a class="wm" href="/"><span class="miss">Miss</span><span class="berni">Bern<span class="i">ı</span></span></a><span>© Анастасия Бернатович, 2026 · Москва · удалённо по всему миру</span></div>
 </footer>
 <script>
+const nav = document.querySelector('.nav'); const onScroll = () => nav.classList.toggle('scrolled', window.scrollY > 40); addEventListener('scroll', onScroll, { passive: true }); onScroll();
 const vids = [...document.querySelectorAll('.phone video')];
 if (!matchMedia('(prefers-reduced-motion: reduce)').matches && 'IntersectionObserver' in window) {
   const io = new IntersectionObserver(es => es.forEach(e => { const v = e.target; if (e.isIntersecting) { if (v.preload === 'none') v.preload = 'auto'; v.play().catch(() => {}); } else v.pause(); }), { rootMargin: '120px' });

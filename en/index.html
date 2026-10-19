@@ -23,7 +23,7 @@
   color-scheme: light;
   --mint: #C6E7E3; --peach: #F9D3C5; --blush: #FAEDE8; --rose: #EBCBD0;
   --ink: #5A5C66; --ink-d: #3E4049; --pearl: #FFFFFF; --dot: #EE9C83;
-  --mint-d: #8FCFC7; --rose-d: #D9A3AD; --link: #3F8F88; --line: #EEE4E1; --muted: #7C7E88;
+  --mint-d: #8FCFC7; --rose-d: #D9A3AD; --link: #3F8F88; --line: #EEE4E1; --muted: #686A74;
   --mesh: radial-gradient(60% 70% at 15% 20%, var(--mint) 0, transparent 70%), radial-gradient(55% 65% at 85% 25%, var(--peach) 0, transparent 70%), radial-gradient(60% 70% at 60% 95%, var(--rose) 0, transparent 70%), var(--blush);
   --f-display: "Unbounded", "Arial Black", system-ui, sans-serif;
   --f-body: "Manrope", "Segoe UI", system-ui, sans-serif;
@@ -232,6 +232,62 @@ footer .wm { font-size: 22px; }
   .pf { grid-template-columns: 1fr; }
   .nav .wm { display: none; }
 }
+
+/* ===== v3 refinements ===== */
+/* 1. Nav: solid glass strip once the page scrolls, so content never peeks above it */
+.nav { transition: background .25s, box-shadow .25s; }
+.nav.scrolled { background: color-mix(in srgb, var(--pearl) 82%, transparent); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); box-shadow: 0 1px 0 var(--line); }
+.nav.scrolled .nav-in { box-shadow: inset 0 0 0 1px var(--line); background: var(--pearl); }
+/* 2. Readability: bigger supporting text, darker greys */
+.hero .tag { font-size: 14px; padding: 10px 15px; }
+.lead { font-size: clamp(19px, 2vw, 23px); color: var(--ink-d); max-width: 40ch; }
+.hero .btn { font-size: 16px; padding: 10px 10px 10px 24px; }
+.hero .btn .go { width: 42px; height: 42px; }
+.about p { color: var(--ink-d); }
+.stat span { font-size: 16px; color: var(--ink-d); }
+.stat:nth-child(4) span { color: #E6E7EC; }
+.sec-note { font-size: 17px; color: var(--ink); }
+/* 3. Services, group 01: wider small cards (big card + 2×2), no squeezed 3-line titles */
+.g-grid { grid-template-columns: 1.25fr 1fr 1fr; }
+.svc.big { grid-column: auto; grid-row: span 2; }
+.svc h4 { font-size: 20px; }
+.svc p { font-size: 16px; color: var(--ink); }
+.path { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; margin-top: 6px; font: 500 13px/1 var(--f-mono); color: var(--ink-d); }
+.path span { background: var(--blush); padding: 8px 11px; border-radius: 999px; }
+.path span:last-child { background: var(--mint); }
+.path i { width: 14px; height: 1.5px; background: var(--rose-d); }
+/* 4. Services, group 02: AI card runs full width (text + code side by side), no empty gaps */
+.g-web { grid-template-columns: 1fr 1fr; }
+.svc.ai { grid-column: 1 / -1; grid-row: auto; display: grid; grid-template-columns: auto 1fr 1.1fr; align-items: center; gap: 18px 24px; padding: 26px; }
+.svc.ai .ai-txt { display: grid; gap: 8px; min-width: 0; }
+.svc.ai .code { font-size: 13.5px; }
+/* 5. Process: numbered steps joined by a line */
+.steps { counter-reset: st; }
+.steps::before { content: ""; position: absolute; left: 24px; right: 24px; top: 41px; height: 2px; background: repeating-linear-gradient(90deg, var(--rose) 0 8px, transparent 8px 14px); z-index: 0; }
+.step { z-index: 1; }
+.step .n { background: var(--pearl); box-shadow: inset 0 0 0 1.5px var(--rose); }
+.step p { color: var(--ink); font-size: 16px; }
+/* 6. Portfolio logos: even tiles in a grid instead of a ragged row */
+.clients { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 10px; }
+.clients img { width: 100%; max-width: none; height: 74px; padding: 12px 16px; box-sizing: border-box; }
+/* 7. Experience: first four visible, the rest behind a toggle */
+.jobs .more { display: grid; gap: 10px; }
+.toggle { justify-self: center; margin-top: 6px; }
+.job time { font-size: 14px; }
+.job p { color: var(--ink); }
+/* 8. Contact: Telegram is the main channel */
+.c-row:first-child { background: var(--mint); }
+.c-row:first-child .k { color: var(--ink-d); }
+@media (max-width: 980px) {
+  .g-grid { grid-template-columns: 1fr 1fr; }
+  .svc.big { grid-column: 1 / -1; grid-row: auto; }
+  .svc.ai { grid-template-columns: 1fr; }
+  .steps::before { display: none; }
+}
+@media (max-width: 560px) {
+  .g-grid, .g-web { grid-template-columns: 1fr; }
+  .svc.big, .svc.ai { grid-column: auto; }
+}
 </style>
 </head>
 <body>
@@ -307,6 +363,7 @@ footer .wm { font-size: 22px; }
               <span class="ico"><svg viewBox="0 0 32 32"><circle cx="16" cy="16" r="11"/><path d="M11 16.5l3.5 3.5L21.5 12"/><circle class="f" cx="25" cy="7" r="2.5"/></svg></span>
               <h4>I run your project from idea to release and support</h4>
               <p>I gather requirements, estimate timeline and budget, assemble the team, run development in sprints and launch the product. After release: post-launch support and growth.</p>
+              <div class="path" aria-label="Stages"><span>idea</span><i></i><span>estimate</span><i></i><span>sprints</span><i></i><span>release</span><i></i><span>support ✓</span></div>
               <ul><li>Websites</li><li>Online stores</li><li>Mobile apps</li><li>SaaS</li></ul>
             </article>
             <article class="svc"><span class="ico"><svg viewBox="0 0 32 32"><path d="M25 12a10 10 0 0 0-18-2"/><path d="M7 4v6h6"/><path d="M7 20a10 10 0 0 0 18 2"/><path d="M25 28v-6h-6"/></svg></span><h4>Agile/Scrum audit and setup</h4><p>Planning, dailies, retros, boards and metrics, so delivery becomes predictable.</p></article>
@@ -320,12 +377,11 @@ footer .wm { font-size: 22px; }
           <div class="g-grid g-web">
             <article class="svc ai">
               <span class="ico"><svg viewBox="0 0 32 32"><path class="f" d="M16 4l2.6 9.4L28 16l-9.4 2.6L16 28l-2.6-9.4L4 16l9.4-2.6z"/></svg></span>
-              <h4>I build websites with no-code builders and AI</h4>
+              <div class="ai-txt"><h4>I build websites with no-code builders and AI</h4><p>For a fast launch: a landing page or company website in days, not months. I set up the structure from the start so the project can scale later.</p></div>
 <pre class="code"><span class="c1">await</span> ai.build({
   deadline: <span class="c2">"days"</span>,
   scale: <span class="c3">true</span> <span class="c4">// ✦</span>
 })</pre>
-              <p>For a fast launch: a landing page or company website in days, not months. I set up the structure from the start so the project can scale later.</p>
             </article>
             <article class="svc white"><span class="ico"><svg viewBox="0 0 32 32"><path d="M6 8h20M6 14h14M6 20h17"/><path class="f" d="M24 22l1 3 3 1-3 1-1 3-1-3-3-1 3-1z"/></svg></span><h4>Content population</h4><p>Copy, catalogs, product cards and pages: I fill the site so it is ready to launch.</p></article>
             <article class="svc white"><span class="ico"><svg viewBox="0 0 32 32"><rect x="5" y="6" width="22" height="15" rx="3"/><path d="M16 21v5M11 26h10"/><rect class="fm" x="9" y="10" width="6" height="7" rx="1.5"/></svg></span><h4>Presentation design</h4><p>Decks for clients, investors and leadership: structure, copy and design.</p></article>
@@ -375,11 +431,14 @@ footer .wm { font-size: 22px; }
         <div class="job"><time>2025 — 2026</time><h3>ECORN Agency<small>Project Manager · custom development</small></h3><p>Development, setup and support of Shopify websites.</p></div>
         <div class="job"><time>2025</time><h3>GVA Hair<small>Operations Manager</small></h3><p>Operations: logistics, sales, purchasing, warehouse, customer service. Policies, budget, automation.</p></div>
         <div class="job"><time>2022 — 2023</time><h3>SpatialChat<small>Project Manager · Cyprus, SaaS</small></h3><p>Set up processes for a 15-person product team and cut delivery time by 20%.</p></div>
+        <div class="more" id="more-jobs" hidden>
         <div class="job"><time>2021 — 2023</time><h3>Rostelecom<small>Project Manager · telecom, IT</small></h3><p>Cross-functional team, budgets, reporting to leadership, presales.</p></div>
         <div class="job"><time>2019 — 2021</time><h3>ANSALIGY<small>Project Manager · beauty e-commerce</small></h3><p>Product roadmap, international teams, A/B tests, investor reports.</p></div>
         <div class="job"><time>2018 — 2019</time><h3>Digital October<small>Project Manager · education</small></h3><p>IT project planning, finance and contracts, infrastructure upgrades.</p></div>
         <div class="job"><time>2015 — 2018</time><h3>AERO<small>Project Manager · digital agency</small></h3><p>Client projects on 1C-Bitrix, presales, outsourced teams.</p></div>
         <div class="job"><time>2014 — 2015</time><h3>Prime e-commerce<small>Junior IT Manager</small></h3><p>First projects for major Russian retailers.</p></div>
+        </div>
+        <button type="button" class="btn soft toggle" id="jobs-toggle" aria-expanded="false" aria-controls="more-jobs">Show all experience · 5 more<span class="go"><svg viewBox="0 0 16 16"><path d="M8 3v10M3 8h10"/></svg></span></button>
       </div>
     </div>
   </section>
@@ -415,6 +474,12 @@ document.querySelectorAll('[data-copy]').forEach(btn => btn.addEventListener('cl
   const fb = () => { const r = document.createRange(); r.selectNodeContents(el); const s = getSelection(); s.removeAllRanges(); s.addRange(r); btn.textContent = 'Selected'; setTimeout(() => btn.textContent = label, 1500); };
   try { navigator.clipboard.writeText(el.textContent.trim()).then(done, fb); } catch (e) { fb(); }
 }));
+const nav = document.querySelector('.nav'); const onScroll = () => nav.classList.toggle('scrolled', window.scrollY > 40); addEventListener('scroll', onScroll, { passive: true }); onScroll();
+const tg = document.getElementById('jobs-toggle'), more = document.getElementById('more-jobs');
+tg.addEventListener('click', () => {
+  const open = more.hidden; more.hidden = !open; tg.setAttribute('aria-expanded', open);
+  tg.firstChild.textContent = open ? 'Show less ' : 'Show all experience · 5 more ';
+});
 </script>
 </body>
 </html>
