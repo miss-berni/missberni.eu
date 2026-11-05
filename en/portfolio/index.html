@@ -48,7 +48,8 @@ a{color:#F2F2F0}a:hover{color:#C6E7E3}
 .mb-row{transition:background .25s,color .25s,padding .35s cubic-bezier(.2,.9,.2,1)}
 .mb-row:hover{background:#EBCBD0;color:#080808;padding-left:24px}
 .mb-row:hover .mb-rowt{transform:skewX(-10deg) scaleX(1.03)}
-.mb-row:hover .mb-mut{color:#080808}
+.mb-row:hover .mb-mut{color:#080808 !important}
+.mb-row:hover .mb-hide-s{opacity:0}
 .mb-rowt{display:inline-block;transform-origin:0 50%;transition:transform .35s cubic-bezier(.2,.9,.2,1)}
 .mb-out{color:#C6E7E3;display:inline-block;transform-origin:0 100%;transition:color .25s,transform .35s}
 .mb-out:hover{color:#F9D3C5;transform:skewX(-10deg) scaleY(1.08)}
@@ -71,7 +72,57 @@ a{color:#F2F2F0}a:hover{color:#C6E7E3}
 .mb-chip{font-size:11px !important;padding:9px 11px !important;transform:translateZ(70px) !important}
 .mb-big{font-size:96px !important}
 }
-@media (prefers-reduced-motion:reduce){.mb-blob,.mb-iri,.mb-ring1,.mb-ring2,.mb-ring3,.mb-chip,.mb-track,.mb-track2,.mb-ltr,.mb-dot{animation:none}}
+
+/* ---------- background motion ---------- */
+@keyframes mbGrid{to{background-position:96px 96px,96px 96px}}
+@keyframes mbDrift1{0%,100%{transform:translate3d(0,0,0) scale(1)}33%{transform:translate3d(18vw,10vh,0) scale(1.15)}66%{transform:translate3d(6vw,32vh,0) scale(.9)}}
+@keyframes mbDrift2{0%,100%{transform:translate3d(0,0,0) scale(1)}33%{transform:translate3d(-20vw,18vh,0) scale(.9)}66%{transform:translate3d(-8vw,-12vh,0) scale(1.2)}}
+@keyframes mbDrift3{0%,100%{transform:translate3d(0,0,0) scale(1.1)}50%{transform:translate3d(14vw,-22vh,0) scale(.85)}}
+@keyframes mbStar{0%{transform:translate3d(0,0,0) rotate(0) scale(.4);opacity:0}15%{opacity:.9}50%{transform:translate3d(var(--dx,20px),-45vh,0) rotate(180deg) scale(1);opacity:.6}85%{opacity:.8}100%{transform:translate3d(calc(var(--dx,20px) * -1),-90vh,0) rotate(360deg) scale(.4);opacity:0}}
+@keyframes mbScan{0%{transform:translateY(-100%)}100%{transform:translateY(100vh)}}
+#top{animation:mbGrid 18s linear infinite}
+.mb-bg{position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden}
+.mb-aur{position:absolute;width:52vw;height:52vw;max-width:760px;max-height:760px;border-radius:50%;filter:blur(90px);opacity:.16;mix-blend-mode:screen}
+.mb-aur1{left:-12vw;top:-10vh;background:#C6E7E3;animation:mbDrift1 28s ease-in-out infinite}
+.mb-aur2{right:-14vw;top:20vh;background:#F9D3C5;animation:mbDrift2 34s ease-in-out infinite}
+.mb-aur3{left:30vw;bottom:-20vh;background:#EBCBD0;animation:mbDrift3 40s ease-in-out infinite}
+.mb-spot{position:absolute;inset:0;background:radial-gradient(420px circle at var(--mx,50%) var(--my,30%),rgba(198,231,227,.10),rgba(249,211,197,.05) 40%,transparent 70%);transition:background .1s}
+.mb-star{position:absolute;bottom:-20px;width:var(--s,10px);height:var(--s,10px);background:var(--c,#C6E7E3);clip-path:polygon(50% 0,61% 39%,100% 50%,61% 61%,50% 100%,39% 61%,0 50%,39% 39%);animation:mbStar var(--t,22s) linear infinite;animation-delay:var(--d,0s);opacity:0}
+.mb-scan{position:absolute;left:0;right:0;height:140px;background:linear-gradient(to bottom,transparent,rgba(198,231,227,.035),transparent);animation:mbScan 9s linear infinite}
+#top > *:not(.mb-bg):not(header){position:relative;z-index:1}
+
+/* ---------- hover motion ---------- */
+.mb-btn{position:relative;overflow:hidden;isolation:isolate}
+.mb-btn::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(110deg,transparent 30%,rgba(255,255,255,.55) 50%,transparent 70%);transform:translateX(-120%);transition:transform .7s cubic-bezier(.2,.9,.2,1)}
+.mb-btn:hover::after{transform:translateX(120%)}
+.mb-btn:active{transform:translateY(0) scale(.97)}
+.mb-nav nav a{position:relative}
+.mb-nav nav a::after{content:"";position:absolute;left:0;right:0;bottom:6px;height:2px;background:linear-gradient(90deg,#C6E7E3,#F9D3C5,#EBCBD0);transform:scaleX(0);transform-origin:0 50%;transition:transform .35s cubic-bezier(.2,.9,.2,1)}
+.mb-nav nav a:hover::after{transform:scaleX(1)}
+.mb-card{position:relative}
+.mb-card:hover{box-shadow:0 0 0 1px #C6E7E3,0 24px 70px rgba(198,231,227,.14),0 0 120px rgba(249,211,197,.08)}
+.mb-card::after{content:"";position:absolute;inset:0;pointer-events:none;background:radial-gradient(260px circle at var(--cx,50%) var(--cy,0%),rgba(198,231,227,.16),transparent 60%);opacity:0;transition:opacity .3s}
+.mb-card:hover::after{opacity:1}
+.mb-logo{transition:transform .45s cubic-bezier(.2,.9,.2,1),box-shadow .3s}
+.mb-logo:hover{transform:translateY(-6px) rotate(-2deg) scale(1.06);box-shadow:0 18px 40px rgba(249,211,197,.25)}
+.mb-row{position:relative}
+.mb-row::after{content:"→";position:absolute;right:16px;top:50%;font-family:Unbounded,sans-serif;font-weight:800;font-size:28px;color:#080808;transform:translate(-24px,-50%);opacity:0;transition:transform .35s cubic-bezier(.2,.9,.2,1),opacity .25s}
+.mb-row:hover::after{transform:translate(0,-50%);opacity:1}
+.mb-row:hover{padding-right:64px}
+.mb-track:hover,.mb-track2:hover{animation-play-state:paused}
+.mb-track2 > span{transition:transform .35s cubic-bezier(.2,.9,.2,1),filter .3s}
+.mb-track2 > span:hover{transform:skewX(-10deg) scale(1.06);filter:drop-shadow(0 0 18px rgba(198,231,227,.45))}
+.mb-pill{transition:background .2s,color .2s,transform .3s cubic-bezier(.2,.9,.2,1)}
+.mb-pill:hover{background:currentColor;transform:translateY(-3px) rotate(-2deg)}
+.mb-pill:hover > span{color:#080808}
+.mb-photo{transition:transform .6s cubic-bezier(.2,.9,.2,1),filter .4s}
+.mb-stage:hover .mb-photo{transform:translateZ(90px) scale(1.04);filter:drop-shadow(0 40px 50px rgba(0,0,0,.7)) drop-shadow(0 0 40px rgba(198,231,227,.25))}
+.mb-stage:hover .mb-ring1{animation-duration:5s}.mb-stage:hover .mb-ring2{animation-duration:7s}.mb-stage:hover .mb-ring3{animation-duration:9s}
+.mb-num{display:inline-block;transition:transform .45s cubic-bezier(.2,.9,.2,1)}
+.mb-card:hover .mb-num{transform:scale(1.08) skewX(-8deg)}
+.mb-big{transition:transform .6s cubic-bezier(.2,.9,.2,1),color .4s}
+.mb-card:hover .mb-big{transform:translate(-14px,10px) rotate(-6deg);color:#232323}
+@media (prefers-reduced-motion:reduce){#top,.mb-aur,.mb-star,.mb-scan,.mb-blob,.mb-iri,.mb-ring1,.mb-ring2,.mb-ring3,.mb-chip,.mb-track,.mb-track2,.mb-ltr,.mb-dot{animation:none}.mb-star,.mb-scan{display:none}}
 
 .pf-filters{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 28px}
 .pf-filters button{min-height:44px;padding:0 18px;border:1px solid #333;background:transparent;color:#F2F2F0;font-family:'JetBrains Mono',monospace;font-size:13px;text-transform:uppercase;letter-spacing:.06em;cursor:pointer;transition:background .2s,color .2s,border-color .2s,transform .3s cubic-bezier(.2,.9,.2,1)}
@@ -106,6 +157,45 @@ a{color:#F2F2F0}a:hover{color:#C6E7E3}
 </head>
 <body>
 <div id="top" style="width: 100%; min-height: 100vh; background-color: #080808; color: #F2F2F0; font-family: Manrope, system-ui, sans-serif; overflow: hidden; position: relative; background-image: linear-gradient(rgba(242,242,240,0.045) 1px, transparent 1px), linear-gradient(90deg, rgba(242,242,240,0.045) 1px, transparent 1px); background-size: 96px 96px">
+<div class="mb-bg" aria-hidden="true">
+<div class="mb-aur mb-aur1"></div><div class="mb-aur mb-aur2"></div><div class="mb-aur mb-aur3"></div>
+<div class="mb-spot"></div>
+<div class="mb-scan"></div>
+<span class="mb-star" style="left: 43%; --s: 8px; --c: #C6E7E3; --t: 30s; --d: -20s; --dx: -40px"></span><span class="mb-star" style="left: 11%; --s: 14px; --c: #F9D3C5; --t: 21s; --d: -11s; --dx: 60px"></span><span class="mb-star" style="left: 9%; --s: 14px; --c: #EBCBD0; --t: 24s; --d: -1s; --dx: -40px"></span><span class="mb-star" style="left: 57%; --s: 12px; --c: #EE9C83; --t: 20s; --d: -7s; --dx: -40px"></span><span class="mb-star" style="left: 72%; --s: 12px; --c: #C6E7E3; --t: 19s; --d: -26s; --dx: 60px"></span><span class="mb-star" style="left: 17%; --s: 8px; --c: #F9D3C5; --t: 19s; --d: -18s; --dx: 60px"></span><span class="mb-star" style="left: 52%; --s: 6px; --c: #EBCBD0; --t: 25s; --d: -1s; --dx: 60px"></span><span class="mb-star" style="left: 19%; --s: 10px; --c: #EE9C83; --t: 31s; --d: -4s; --dx: 60px"></span><span class="mb-star" style="left: 17%; --s: 14px; --c: #C6E7E3; --t: 27s; --d: -17s; --dx: -20px"></span><span class="mb-star" style="left: 15%; --s: 14px; --c: #F9D3C5; --t: 24s; --d: -11s; --dx: -40px"></span><span class="mb-star" style="left: 72%; --s: 6px; --c: #EBCBD0; --t: 19s; --d: -19s; --dx: -20px"></span><span class="mb-star" style="left: 65%; --s: 14px; --c: #EE9C83; --t: 31s; --d: -24s; --dx: 20px"></span><span class="mb-star" style="left: 61%; --s: 14px; --c: #C6E7E3; --t: 32s; --d: -11s; --dx: 20px"></span><span class="mb-star" style="left: 33%; --s: 8px; --c: #F9D3C5; --t: 25s; --d: -2s; --dx: 60px"></span>
+</div>
+
+<header class="mb-nav" style="position: relative; z-index: 20; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px 16px; padding: 20px clamp(16px, 4vw, 56px); border-bottom: 1px solid #262626">
+<a href="#top" style="display: flex; align-items: center; gap: 12px; font-family: Unbounded, sans-serif; font-weight: 800; font-size: 20px; letter-spacing: -0.02em">
+<span style="display: inline-flex; align-items: center; justify-content: center; width: 44px; height: 44px; background: #F9D3C5; color: #080808; font-size: 15px">MB</span>MissBernı</a>
+<nav aria-label="Основное меню" class="mb-hide-s" style="display: flex; flex-wrap: wrap; gap: 4px 28px; font-family: 'JetBrains Mono', monospace; font-size: 13px; text-transform: uppercase; letter-spacing: 0.08em">
+<a href="#about" style="padding: 12px 0">/обо мне</a>
+<a href="#services" style="padding: 12px 0">/услуги</a>
+<a href="#work" style="padding: 12px 0">/портфолио</a>
+<a href="#experience" style="padding: 12px 0">/опыт</a>
+</nav>
+<div style="display: flex; align-items: center; gap: 8px; font-family: 'JetBrains Mono', monospace; font-size: 13px">
+<a href="/" style="padding: 12px 6px; color: #C6E7E3">RU</a>
+<a href="/en/" style="padding: 12px 6px">EN</a>
+<a class="mb-btn mb-btng" href="https://t.me/Bernatovic_Anastasiia" style="display: inline-flex; align-items: center; min-height: 44px; padding: 0 18px; border: 1px solid #F2F2F0; text-decoration: none; text-transform: uppercase; letter-spacing: 0.06em">Telegram ↗</a>
+</div>
+</header>
+
+<section aria-label="Главный экран" style="position: relative; padding: 32px clamp(16px, 4vw, 56px) 64px" id="mb-hero">
+<div style="display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px 24px; font-family: 'JetBrains Mono', monospace; font-size: 12px; text-transform: uppercase; letter-spacing: 0.1em; color: #9A9A96; position: relative; z-index: 5">
+<span><span class="mb-dot" style="color: #EE9C83">●</span> Project Manager</span>
+<span>IT и e-commerce</span>
+<span>Москва / удалённо</span>
+<span class="mb-hide-s">10+ лет · до 20 человек</span>
+</div>
+
+<div style="display: flex; flex-wrap: wrap; align-items: center; gap: 24px 40px; margin-top: 24px">
+<div style="flex: 1 1 340px; min-width: 0; position: relative; z-index: 5">
+<p style="margin: 0; font-family: Unbounded, sans-serif; font-weight: 600; font-size: clamp(22px, 2.8vw, 40px); line-height: 1.18; letter-spacing: -0.02em; max-width: 560px">Довожу цифровые продукты от идеи до релиза — <span style="color: #F9D3C5">в срок, в бюджет</span> и без хаоса в команде.</p>
+<div style="display: flex; flex-wrap: wrap; gap: 12px; margin-top: 32px">
+<a class="mb-btn mb-btnp" href="#contact" style="display: inline-flex; align-items: center; min-height: 52px; padding: 0 26px; background: #F9D3C5; color: #080808; font-family: 'JetBrains Mono', monospace; font-weight: 600; font-size: 14px; text-transform: uppercase; letter-spacing: 0.06em; text-decoration: none">Обсудить проект →</a>
+<a class="mb-btn mb-btng" href="#services" style="display: inline-flex; align-items: center; min-height: 52px; padding: 0 26px; border: 1px solid #F2F2F0; color: #F2F2F0; font-family: 'JetBrains Mono', monospace; font-size: 14px; text-transform: uppercase; letter-spacing: 0.06em; text-decoration: none">Чем могу помочь</a>
+</div>
+</div>
 <header class="mb-nav" style="position: relative; z-index: 20; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px 16px; padding: 20px clamp(16px, 4vw, 56px); border-bottom: 1px solid #262626">
 <a href="/en/" style="display: flex; align-items: center; gap: 12px; font-family: Unbounded, sans-serif; font-weight: 800; font-size: 20px; letter-spacing: -0.02em">
 <span style="display: inline-flex; align-items: center; justify-content: center; width: 44px; height: 44px; background: #F9D3C5; color: #080808; font-size: 15px">MB</span>MissBernı</a>
@@ -271,6 +361,18 @@ a{color:#F2F2F0}a:hover{color:#C6E7E3}
     var io = new IntersectionObserver(function (es) { es.forEach(function (e) { var v = e.target; if (e.isIntersecting) { if (v.preload === 'none') v.preload = 'auto'; var p = v.play(); if (p) p.catch(function () {}); } else v.pause(); }); }, { rootMargin: '120px' });
     vids.forEach(function (v) { io.observe(v); });
   }
+
+  var docEl = document.documentElement;
+  window.addEventListener('pointermove', function (e) {
+    docEl.style.setProperty('--mx', e.clientX + 'px');
+    docEl.style.setProperty('--my', e.clientY + 'px');
+    var card = e.target && e.target.closest ? e.target.closest('.mb-card') : null;
+    if (card) {
+      var r = card.getBoundingClientRect();
+      card.style.setProperty('--cx', (e.clientX - r.left) + 'px');
+      card.style.setProperty('--cy', (e.clientY - r.top) + 'px');
+    }
+  }, { passive: true });
   var btns = document.querySelectorAll('.pf-filters button');
   [].forEach.call(btns, function (b) { b.addEventListener('click', function () {
     [].forEach.call(btns, function (x) { x.setAttribute('aria-pressed', String(x === b)); });
