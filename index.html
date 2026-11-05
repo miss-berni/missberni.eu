@@ -46,7 +46,8 @@ a{color:#F2F2F0}a:hover{color:#C6E7E3}
 .mb-track2{animation:mbMarq 46s linear infinite reverse}
 .mb-dot{animation:mbBlink 1.4s steps(2) infinite}
 .mb-row{transition:background .25s,color .25s,padding .35s cubic-bezier(.2,.9,.2,1)}
-.mb-row:hover{background:#EBCBD0;color:#080808;padding-left:24px}
+.mb-row{padding-left:16px !important;padding-right:64px !important}
+.mb-row:hover{background:#EBCBD0;color:#080808;padding-left:28px !important}
 .mb-row:hover .mb-rowt{transform:skewX(-10deg) scaleX(1.03)}
 .mb-row:hover .mb-mut{color:#080808 !important}
 .mb-row:hover .mb-hide-s{opacity:0}
@@ -61,6 +62,8 @@ a{color:#F2F2F0}a:hover{color:#C6E7E3}
 .mb-btnp:hover{background:#C6E7E3;color:#080808}
 .mb-btng:hover{background:#EBCBD0;color:#080808;border-color:#EBCBD0}
 .mb-nav a{text-decoration:none}
+section[id]{scroll-margin-top:96px}
+@media (hover:none){.mb-row::after{display:none}.mb-row{padding-right:16px !important}}
 .mb-h1{font-size:clamp(34px, 9vw, 150px)}
 .mb-h1b{padding-left:clamp(0px, 8vw, 140px)}
 .mb-h2{line-height:1;font-size:clamp(32px, 5vw, 72px)}
@@ -69,6 +72,9 @@ a{color:#F2F2F0}a:hover{color:#C6E7E3}
 .mb-h1b{padding-left:0}
 .mb-h2{line-height:1.08;letter-spacing:-0.03em !important}
 .mb-hide-s{display:none !important}
+.mb-wm{display:none}
+.mb-nav{flex-wrap:nowrap !important;padding-top:12px !important;padding-bottom:12px !important}
+section[id]{scroll-margin-top:76px}
 .mb-chip{font-size:11px !important;padding:9px 11px !important;transform:translateZ(70px) !important}
 .mb-big{font-size:96px !important}
 }
@@ -106,9 +112,8 @@ a{color:#F2F2F0}a:hover{color:#C6E7E3}
 .mb-logo{transition:transform .45s cubic-bezier(.2,.9,.2,1),box-shadow .3s}
 .mb-logo:hover{transform:translateY(-6px) rotate(-2deg) scale(1.06);box-shadow:0 18px 40px rgba(249,211,197,.25)}
 .mb-row{position:relative}
-.mb-row::after{content:"→";position:absolute;right:16px;top:50%;font-family:Unbounded,sans-serif;font-weight:800;font-size:28px;color:#080808;transform:translate(-24px,-50%);opacity:0;transition:transform .35s cubic-bezier(.2,.9,.2,1),opacity .25s}
+.mb-row::after{content:"→";position:absolute;right:22px;top:50%;font-family:Unbounded,sans-serif;font-weight:800;font-size:24px;line-height:1;color:#080808;transform:translate(-24px,-50%);opacity:0;transition:transform .35s cubic-bezier(.2,.9,.2,1),opacity .25s}
 .mb-row:hover::after{transform:translate(0,-50%);opacity:1}
-.mb-row:hover{padding-right:64px}
 .mb-track:hover,.mb-track2:hover{animation-play-state:paused}
 .mb-track2 > span{transition:transform .35s cubic-bezier(.2,.9,.2,1),filter .3s}
 .mb-track2 > span:hover{transform:skewX(-10deg) scale(1.06);filter:drop-shadow(0 0 18px rgba(198,231,227,.45))}
@@ -126,7 +131,7 @@ a{color:#F2F2F0}a:hover{color:#C6E7E3}
 </style>
 </head>
 <body>
-<div id="top" style="width: 100%; min-height: 100vh; background-color: #080808; color: #F2F2F0; font-family: Manrope, system-ui, sans-serif; overflow: hidden; position: relative; background-image: linear-gradient(rgba(242,242,240,0.045) 1px, transparent 1px), linear-gradient(90deg, rgba(242,242,240,0.045) 1px, transparent 1px); background-size: 96px 96px">
+<div id="top" style="width: 100%; min-height: 100vh; background-color: #080808; color: #F2F2F0; font-family: Manrope, system-ui, sans-serif; overflow-x: clip; position: relative; background-image: linear-gradient(rgba(242,242,240,0.045) 1px, transparent 1px), linear-gradient(90deg, rgba(242,242,240,0.045) 1px, transparent 1px); background-size: 96px 96px">
 <div class="mb-bg" aria-hidden="true">
 <div class="mb-aur mb-aur1"></div><div class="mb-aur mb-aur2"></div><div class="mb-aur mb-aur3"></div>
 <div class="mb-spot"></div>
@@ -134,9 +139,9 @@ a{color:#F2F2F0}a:hover{color:#C6E7E3}
 <span class="mb-star" style="left: 43%; --s: 8px; --c: #C6E7E3; --t: 30s; --d: -20s; --dx: -40px"></span><span class="mb-star" style="left: 11%; --s: 14px; --c: #F9D3C5; --t: 21s; --d: -11s; --dx: 60px"></span><span class="mb-star" style="left: 9%; --s: 14px; --c: #EBCBD0; --t: 24s; --d: -1s; --dx: -40px"></span><span class="mb-star" style="left: 57%; --s: 12px; --c: #EE9C83; --t: 20s; --d: -7s; --dx: -40px"></span><span class="mb-star" style="left: 72%; --s: 12px; --c: #C6E7E3; --t: 19s; --d: -26s; --dx: 60px"></span><span class="mb-star" style="left: 17%; --s: 8px; --c: #F9D3C5; --t: 19s; --d: -18s; --dx: 60px"></span><span class="mb-star" style="left: 52%; --s: 6px; --c: #EBCBD0; --t: 25s; --d: -1s; --dx: 60px"></span><span class="mb-star" style="left: 19%; --s: 10px; --c: #EE9C83; --t: 31s; --d: -4s; --dx: 60px"></span><span class="mb-star" style="left: 17%; --s: 14px; --c: #C6E7E3; --t: 27s; --d: -17s; --dx: -20px"></span><span class="mb-star" style="left: 15%; --s: 14px; --c: #F9D3C5; --t: 24s; --d: -11s; --dx: -40px"></span><span class="mb-star" style="left: 72%; --s: 6px; --c: #EBCBD0; --t: 19s; --d: -19s; --dx: -20px"></span><span class="mb-star" style="left: 65%; --s: 14px; --c: #EE9C83; --t: 31s; --d: -24s; --dx: 20px"></span><span class="mb-star" style="left: 61%; --s: 14px; --c: #C6E7E3; --t: 32s; --d: -11s; --dx: 20px"></span><span class="mb-star" style="left: 33%; --s: 8px; --c: #F9D3C5; --t: 25s; --d: -2s; --dx: 60px"></span>
 </div>
 
-<header class="mb-nav" style="position: relative; z-index: 20; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px 16px; padding: 20px clamp(16px, 4vw, 56px); border-bottom: 1px solid #262626">
+<header class="mb-nav" style="position: sticky; top: 0; z-index: 50; background: rgba(8,8,8,0.72); backdrop-filter: blur(16px) saturate(1.4); -webkit-backdrop-filter: blur(16px) saturate(1.4); display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px 16px; padding: 20px clamp(16px, 4vw, 56px); border-bottom: 1px solid #262626">
 <a href="#top" style="display: flex; align-items: center; gap: 12px; font-family: Unbounded, sans-serif; font-weight: 800; font-size: 20px; letter-spacing: -0.02em">
-<span style="display: inline-flex; align-items: center; justify-content: center; width: 44px; height: 44px; background: #F9D3C5; color: #080808; font-size: 15px">MB</span>MissBernı</a>
+<span style="display: inline-flex; align-items: center; justify-content: center; width: 44px; height: 44px; background: #F9D3C5; color: #080808; font-size: 15px">MB</span><span class="mb-wm">MissBernı</span></a>
 <nav aria-label="Основное меню" class="mb-hide-s" style="display: flex; flex-wrap: wrap; gap: 4px 28px; font-family: 'JetBrains Mono', monospace; font-size: 13px; text-transform: uppercase; letter-spacing: 0.08em">
 <a href="#about" style="padding: 12px 0">/обо мне</a>
 <a href="#services" style="padding: 12px 0">/услуги</a>
