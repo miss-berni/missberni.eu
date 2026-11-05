@@ -62,6 +62,12 @@ a{color:#F2F2F0}a:hover{color:#C6E7E3}
 .mb-btnp:hover{background:#C6E7E3;color:#080808}
 .mb-btng:hover{background:#EBCBD0;color:#080808;border-color:#EBCBD0}
 .mb-nav a{text-decoration:none}
+/* ---------- header: part of the first screen, sticky only after scrolling ---------- */
+@keyframes mbNavIn{from{transform:translateY(-110%)}to{transform:none}}
+.mb-nav{transition:background .3s,border-color .3s,padding .3s}
+.mb-nav.is-stuck{position:fixed !important;background:rgba(8,8,8,.8);backdrop-filter:blur(16px) saturate(1.4);-webkit-backdrop-filter:blur(16px) saturate(1.4);padding-top:12px !important;padding-bottom:12px !important;box-shadow:0 12px 40px rgba(0,0,0,.35);animation:mbNavIn .45s cubic-bezier(.2,.9,.2,1)}
+.mb-first{padding-top:118px !important}
+
 section[id]{scroll-margin-top:96px}
 @media (hover:none){.mb-row::after{display:none}.mb-row{padding-right:16px !important}}
 .mb-h1{font-size:clamp(34px, 9vw, 150px)}
@@ -74,6 +80,7 @@ section[id]{scroll-margin-top:96px}
 .mb-hide-s{display:none !important}
 .mb-wm{display:none}
 .mb-nav{flex-wrap:nowrap !important;padding-top:12px !important;padding-bottom:12px !important}
+.mb-first{padding-top:94px !important}
 section[id]{scroll-margin-top:76px}
 .mb-chip{font-size:11px !important;padding:9px 11px !important;transform:translateZ(70px) !important}
 .mb-big{font-size:96px !important}
@@ -140,7 +147,7 @@ section[id]{scroll-margin-top:76px}
 <span class="mb-star" style="left: 43%; --s: 8px; --c: #C6E7E3; --t: 30s; --d: -20s; --dx: -40px"></span><span class="mb-star" style="left: 11%; --s: 14px; --c: #F9D3C5; --t: 21s; --d: -11s; --dx: 60px"></span><span class="mb-star" style="left: 9%; --s: 14px; --c: #EBCBD0; --t: 24s; --d: -1s; --dx: -40px"></span><span class="mb-star" style="left: 57%; --s: 12px; --c: #EE9C83; --t: 20s; --d: -7s; --dx: -40px"></span><span class="mb-star" style="left: 72%; --s: 12px; --c: #C6E7E3; --t: 19s; --d: -26s; --dx: 60px"></span><span class="mb-star" style="left: 17%; --s: 8px; --c: #F9D3C5; --t: 19s; --d: -18s; --dx: 60px"></span><span class="mb-star" style="left: 52%; --s: 6px; --c: #EBCBD0; --t: 25s; --d: -1s; --dx: 60px"></span><span class="mb-star" style="left: 19%; --s: 10px; --c: #EE9C83; --t: 31s; --d: -4s; --dx: 60px"></span><span class="mb-star" style="left: 17%; --s: 14px; --c: #C6E7E3; --t: 27s; --d: -17s; --dx: -20px"></span><span class="mb-star" style="left: 15%; --s: 14px; --c: #F9D3C5; --t: 24s; --d: -11s; --dx: -40px"></span><span class="mb-star" style="left: 72%; --s: 6px; --c: #EBCBD0; --t: 19s; --d: -19s; --dx: -20px"></span><span class="mb-star" style="left: 65%; --s: 14px; --c: #EE9C83; --t: 31s; --d: -24s; --dx: 20px"></span><span class="mb-star" style="left: 61%; --s: 14px; --c: #C6E7E3; --t: 32s; --d: -11s; --dx: 20px"></span><span class="mb-star" style="left: 33%; --s: 8px; --c: #F9D3C5; --t: 25s; --d: -2s; --dx: 60px"></span>
 </div>
 
-<header class="mb-nav" style="position: sticky; top: 0; z-index: 50; background: rgba(8,8,8,0.72); backdrop-filter: blur(16px) saturate(1.4); -webkit-backdrop-filter: blur(16px) saturate(1.4); display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px 16px; padding: 20px clamp(16px, 4vw, 56px); border-bottom: 1px solid #262626">
+<header class="mb-nav" style="position: absolute; top: 0; left: 0; right: 0; z-index: 50; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px 16px; padding: 20px clamp(16px, 4vw, 56px); border-bottom: 1px solid #262626">
 <a href="#top" style="display: flex; align-items: center; gap: 12px; font-family: Unbounded, sans-serif; font-weight: 800; font-size: 20px; letter-spacing: -0.02em">
 <span style="display: inline-flex; align-items: center; justify-content: center; width: 44px; height: 44px; background: #F9D3C5; color: #080808; font-size: 15px">MB</span><span class="mb-wm">MissBernı</span></a>
 <nav aria-label="Main menu" class="mb-hide-s" style="display: flex; flex-wrap: wrap; gap: 4px 28px; font-family: 'JetBrains Mono', monospace; font-size: 13px; text-transform: uppercase; letter-spacing: 0.08em">
@@ -156,7 +163,7 @@ section[id]{scroll-margin-top:76px}
 </div>
 </header>
 
-<section aria-label="Hero" style="position: relative; padding: 32px clamp(16px, 4vw, 56px) 64px" id="mb-hero">
+<section aria-label="Hero" class="mb-first" style="position: relative; padding: 32px clamp(16px, 4vw, 56px) 64px" id="mb-hero">
 <div style="display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px 24px; font-family: 'JetBrains Mono', monospace; font-size: 12px; text-transform: uppercase; letter-spacing: 0.1em; color: #9A9A96; position: relative; z-index: 5">
 <span><span class="mb-dot" style="color: #EE9C83">●</span> Project Manager</span>
 <span>IT &amp; e-commerce</span>
@@ -512,6 +519,10 @@ section[id]{scroll-margin-top:76px}
     hero.addEventListener('mouseleave', function () { scene.style.transform = rest; });
   }
 
+
+  var navEl = document.querySelector('.mb-nav');
+  var onScroll = function () { if (navEl) navEl.classList.toggle('is-stuck', window.scrollY > 160); };
+  window.addEventListener('scroll', onScroll, { passive: true }); onScroll();
   var docEl = document.documentElement;
   window.addEventListener('pointermove', function (e) {
     docEl.style.setProperty('--mx', e.clientX + 'px');
